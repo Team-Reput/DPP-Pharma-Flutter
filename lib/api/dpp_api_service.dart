@@ -3,6 +3,9 @@ import 'package:http/http.dart' as http;
 import '../../constants/api_constants.dart';
 
 class DppApiService {
+  static const String _key = "0123456789abcdef";
+  static String get encryptionKey => _key;
+
   Future<Map<String, dynamic>> fetchDppTabsRaw({
     required int brandId,
     required int batchId,
@@ -22,7 +25,9 @@ class DppApiService {
 
     final Map<String, dynamic> jsonBody = jsonDecode(response.body);
     final prettyJson = const JsonEncoder.withIndent('  ').convert(jsonBody);
-    print('🔓 Decrypted DPP JSON:\n$prettyJson');
+    print('🔓 Brand ID: $brandId');
+    print('🔓 Batch ID: $batchId');
+    // print('🔓 Decrypted DPP JSON:\n$prettyJson');
 
     return jsonBody;
   }
