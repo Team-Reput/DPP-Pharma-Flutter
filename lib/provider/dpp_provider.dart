@@ -14,6 +14,16 @@ class DppProvider extends ChangeNotifier {
   bool get isLoading => _loading;
   String? get error => _error;
 
+  int? _brandId;
+  int? _batchId;
+  int _templateId = 2;
+  Map<String, dynamic>? _decryptedData;
+
+  int? get brandId => _brandId;
+  int? get batchId => _batchId;
+  int get templateId => _templateId;
+  Map<String, dynamic>? get decryptedData => _decryptedData;
+
   ProductDetails? get product =>
       _response?.data.isNotEmpty == true &&
           _response!.data.first.oDetails.productDetails.isNotEmpty
@@ -46,5 +56,30 @@ class DppProvider extends ChangeNotifier {
       _loading = false;
       notifyListeners();
     }
+  }
+
+
+  void setIds({required int brandId, required int batchId}) {
+    _brandId = brandId;
+    _batchId = batchId;
+    notifyListeners();
+  }
+
+  void setTemplateId(int templateId) {
+    _templateId = templateId;
+    notifyListeners();
+  }
+
+  void setDecryptedData(Map<String, dynamic> data) {
+    _decryptedData = data;
+    notifyListeners();
+  }
+
+  void clear() {
+    _brandId = null;
+    _batchId = null;
+    _templateId = 2;
+    _decryptedData = null;
+    notifyListeners();
   }
 }

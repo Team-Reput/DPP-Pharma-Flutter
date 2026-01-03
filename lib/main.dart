@@ -1,3 +1,5 @@
+import 'package:dpp_pharma/app_initialiser.dart';
+import 'package:dpp_pharma/constants/splash_icons.dart';
 import 'package:dpp_pharma/provider/dpp_provider.dart';
 import 'package:dpp_pharma/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,22 +15,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> splashIcons = [
-      'assets/svg/industry/ic1.png',
-      'assets/svg/industry/ic2.png',
-      'assets/svg/industry/ic3.png',
-      'assets/svg/industry/ic4.png',
-      'assets/svg/industry/ic5.png',
-      'assets/svg/industry/ic6.png',
-      'assets/svg/industry/ic7.png',
-      'assets/svg/industry/ic8.png',
-      'assets/svg/industry/ic9.png',
-      'assets/svg/industry/ic10.png',
-      'assets/svg/industry/ic11.png',
-      'assets/svg/industry/ic12.png',
-    ];
-
-     return ScreenUtilInit(
+    return ScreenUtilInit(
       designSize: const Size(412, 524),
       minTextAdapt: true,
       splitScreenMode: false,
@@ -37,7 +24,7 @@ class MyApp extends StatelessWidget {
           providers: [ChangeNotifierProvider(create: (_) => DppProvider())],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: SplashScreen(dynamicIconPaths: splashIcons),
+            home: AppInitializer(),
           ),
         );
       },

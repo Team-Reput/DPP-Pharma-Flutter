@@ -11,7 +11,9 @@ import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   final List<String> dynamicIconPaths;
-  const SplashScreen({required this.dynamicIconPaths});
+  final int brandID;
+  final int batchID;
+  const SplashScreen({required this.dynamicIconPaths, required this.brandID, required this.batchID});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -81,7 +83,7 @@ class _SplashScreenState extends State<SplashScreen>
     final dppProvider = context.read<DppProvider>();
 
     // Call API here; this will print the JSON from provider & service
-    await dppProvider.loadDpp(brandId: 299, batchId: 2);
+    await dppProvider.loadDpp(brandId: widget.brandID, batchId: widget.batchID);
 
     // Optional splash delay to show animation
     await Future.delayed(const Duration(seconds: 3));
